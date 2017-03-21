@@ -12,6 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 
+gem 'twitter-bootstrap-rails'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'
