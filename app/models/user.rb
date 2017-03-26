@@ -1,8 +1,18 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   has_many :events
 
   validates :name, presence: true, length: { maximum: 35 }
-  validates :email, presence: true, length: { maximum: 100 }
-  validates :email, uniqueness: true
-  validates_format_of :email, with: /@/
+
+  before_validation :set_name, on: :create
+
+  private
+
+  # задаем юзеру случайное имя, если оно пустое
+  def set_name
+    self.name = "Товарищ №#{rand(777)}" if self.name.blank?
+  end
+
 end
